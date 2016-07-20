@@ -1,0 +1,7 @@
+<h1>All Discussions</h1>
+
+<% @discussions.each do |discussion| %>
+  <%= link_to discussion.title,discussion_path(discussion) %>
+  <%= discussion.description %>
+  <hr>
+<% end %>

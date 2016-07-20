@@ -6,6 +6,10 @@ Rails.application.routes.draw do
 
   resources :tasks
   resources :projects
+  resources :discussions do
+    resources :comments
+  end 
+
   resources :sessions, only: [:new, :create] do
      delete :destroy, on: :collection
   end
