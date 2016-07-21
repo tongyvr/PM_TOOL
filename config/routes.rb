@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   resources :tasks
   resources :projects
   resources :discussions do
-    resources :comments
-  end 
+    resources :comments, only: [:new, :create, :show, :destroy]
+  end
 
   resources :sessions, only: [:new, :create] do
      delete :destroy, on: :collection

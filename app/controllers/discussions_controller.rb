@@ -2,6 +2,7 @@ class DiscussionsController < ApplicationController
 
   def new
     @discussion = Discussion.new
+    @comment = Comment.new
   end
 
   def create
@@ -36,10 +37,13 @@ class DiscussionsController < ApplicationController
     @discussion = Discussion.find params[:id]
     @discussion.destroy
     redirect_to discussions_path, notice: "Discussion deleted"
+    @comment = Comment.find params[:id] if @comment
+    @comment.destroy if @comment
   end
 
   def show
     @discussion = Discussion.find params[:id]
+    @comment = Comment.find params[:id] if @comment
   end
 
   private
@@ -48,6 +52,8 @@ class DiscussionsController < ApplicationController
     params.require(:discussion).permit(:title, :description, :due_date)
   end
 
-
+  def comment_params
+    params.require(:comment).permit(:title, :description)
+  end
 
 end
